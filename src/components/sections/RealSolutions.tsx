@@ -139,7 +139,7 @@ export const RealSolutions = () => {
 
   const goToSlide = (idx: number) => {
     const inactiveW = getInactiveWidth();
-    const padding = 24; // gap-6 = 24px
+    const padding = 8; // gap-2 = 8px
     
     // We only care about the items perfectly to the left
     // which are all INACTIVE length.
@@ -172,7 +172,7 @@ export const RealSolutions = () => {
     }
 
     const inactiveW = getInactiveWidth();
-    const padding = 24;
+    const padding = 8; // gap-2 = 8px
     const threshold = inactiveW * 0.15;
     const baseTranslate = -(currentSlide * (inactiveW + padding));
     const diff = translateX - baseTranslate;
@@ -286,7 +286,7 @@ export const RealSolutions = () => {
                    {/* Right Half */}
                    <div className="w-full md:w-1/2 p-4 flex flex-col items-center justify-between">
                       <div className="w-full h-[calc(100%-80px)] relative overflow-hidden rounded-[2px]">
-                        <img src={card.img} alt={card.name} className="w-[300px] h-[300px] object-cover" draggable={false} />
+                        <img src={card.img} alt={card.name} className="w-[300px] h-[300px] md:w-full md:h-full object-cover" draggable={false} />
                       </div>
                       <div className="w-full flex justify-between items-center mt-4 px-2">
                         <span className="text-xl font-medium tracking-tight pointer-events-auto select-auto">{card.name}</span>

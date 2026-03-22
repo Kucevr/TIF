@@ -27,7 +27,7 @@ export const FloatingAction = () => {
     <div 
       ref={tickerRef} 
       style={{ opacity: 0, visibility: "hidden", transform: "translateY(150px)" }}
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm"
+      className="fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm"
     >
       <div className="flex items-center bg-white p-2 rounded-sm shadow-xl border border-gray-100/50">
         <span className="px-4 text-sm font-bold tracking-tight text-black whitespace-nowrap">Deadline March 31</span>

@@ -113,7 +113,7 @@ export const Navbar = () => {
           needsSolidBg ? "bg-[#f2f2f2] text-black" : "bg-transparent text-white"
         )}
       >
-        <div className="flex h-20 items-center justify-between px-6 md:px-12 pointer-events-auto">
+        <div className="flex h-16 md:h-20 items-center justify-between px-6 md:px-12 pointer-events-auto">
           <a href="/" className="text-3xl font-bold tracking-tighter shrink-0 z-50">
             TIF
           </a>

@@ -25,7 +25,7 @@ export const Faq = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-[#fff] text-[#1a1a1a] py-32 overflow-hidden cursor-pointer"
+      className="relative w-full bg-[#fff] text-[#1a1a1a] py-24 overflow-hidden cursor-pointer"
       onClick={() => navigate("/faq")}
     >
       <div className="relative z-10 w-[200vw] flex overflow-hidden">

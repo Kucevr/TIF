@@ -288,7 +288,7 @@ export const FaqPage = () => {
 
         {/* Marquee Section */}
         <section 
-           className="relative w-full bg-white text-[#1a1a1a] py-32 overflow-hidden cursor-pointer"
+           className="relative w-full bg-white text-[#1a1a1a] py-24 overflow-hidden cursor-pointer"
            onClick={() => navigate("/contact")}
         >
           <div className="relative z-10 w-[200vw] flex overflow-hidden">
