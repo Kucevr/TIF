@@ -217,14 +217,8 @@ export const ContactUs = () => {
             ))}
           </div>
         </section>
-
-        {/* Programs */}
-        <div className="mb-24 px-4 md:px-8 max-w-[1400px] mx-auto">
-          <div className="text-[10px] font-bold tracking-widest text-black mb-8 flex items-center gap-2 uppercase">
-            <div className="w-1.5 h-1.5 bg-black" /> PROGRAM
-          </div>
           <Programs />
-        </div>
+        
       </main>
 
       <Footer />
