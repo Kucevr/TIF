@@ -273,8 +273,8 @@ export const RealSolutions = () => {
                         {card.quote}
                       </p>
 
-                      <div className="mt-8">
-                        <div className="font-bold text-lg tracking-widest text-[#005288] uppercase mb-4">
+                      <div className="mt-4 md:mt-8">
+                        <div className="font-bold text-sm md:text-lg tracking-widest text-[#005288] uppercase mb-4">
                           {card.logoText}
                         </div>
                         <div className="text-xs font-bold text-gray-400 tracking-wider">

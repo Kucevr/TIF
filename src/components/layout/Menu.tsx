@@ -79,6 +79,7 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
 
   useGSAP(() => {
     if (isOpen) {
+      document.body.style.overflow = "hidden";
       gsap.fromTo(bgRef.current, { yPercent: -100 }, { yPercent: 0, duration: 0.7, ease: "power4.inOut" });
       gsap.fromTo(
         contentRef.current,
@@ -86,10 +87,14 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
         { autoAlpha: 1, y: 0, duration: 0.5, delay: 0.3, ease: "power3.out" }
       );
     } else {
+      document.body.style.overflow = "";
       gsap.to(contentRef.current, { autoAlpha: 0, y: -20, duration: 0.3, ease: "power2.in" });
       gsap.to(bgRef.current, { yPercent: -100, duration: 0.5, delay: 0.1, ease: "power4.inOut" });
       setTimeout(() => setActiveTab("Programs"), 600);
     }
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   const handleTabClick = (tab: Tab) => {
@@ -121,14 +126,20 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
         className="absolute inset-0 bg-[#f2f2f2] w-full h-[100svh]"
       />
 
-      <div ref={contentRef} className="relative z-10 w-full h-[100dvh] flex flex-col px-6 md:px-12 pt-32 pb-8 text-black opacity-0">
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
-          <div className="hidden lg:flex lg:col-span-2 flex-col gap-6 text-xl font-medium mt-1 uppercase tracking-tight">
-            <AnimatedLink className="justify-start origin-left w-fit" href="/contact">Contact us</AnimatedLink>
-            <AnimatedLink className="justify-start origin-left w-fit" href="/faq">FAQs</AnimatedLink>
+      <div ref={contentRef} className="relative z-10 w-full h-[100dvh] overflow-y-auto overflow-x-hidden no-scrollbar flex flex-col px-6 md:px-12 pt-28 md:pt-32 pb-8 text-black opacity-0">
+        <div className="flex-1 flex flex-col lg:grid lg:grid-cols-12 gap-8 h-auto lg:h-full pb-20 lg:pb-0">
+          
+          <div className="flex flex-col gap-4 lg:hidden text-[2rem] font-medium tracking-tight mb-2 uppercase">
+            <AnimatedLink className="justify-start origin-left w-fit" href="/contact" onClick={onClose}>Contact us</AnimatedLink>
+            <AnimatedLink className="justify-start origin-left w-fit" href="/faq" onClick={onClose}>FAQs</AnimatedLink>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col gap-12 text-[3.5rem] lg:leading-[1.1] font-medium tracking-tight h-full">
+          <div className="hidden lg:flex lg:col-span-2 flex-col gap-6 text-xl font-medium mt-1 uppercase tracking-tight">
+            <AnimatedLink className="justify-start origin-left w-fit" href="/contact" onClick={onClose}>Contact us</AnimatedLink>
+            <AnimatedLink className="justify-start origin-left w-fit" href="/faq" onClick={onClose}>FAQs</AnimatedLink>
+          </div>
+
+          <div className="lg:col-span-4 flex flex-col gap-4 lg:gap-12 text-[2.2rem] md:text-[2.5rem] lg:text-[3.5rem] lg:leading-[1.1] font-medium tracking-tight h-auto lg:h-full">
             {TABS.map((tab) => (
               <button 
                 key={tab}
@@ -150,7 +161,7 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
             ))}
           </div>
 
-          <div className="lg:col-span-6 flex flex-col gap-4 overflow-hidden mt-6 lg:mt-0" ref={rightContentRef}>
+          <div className="lg:col-span-6 flex flex-col gap-4 overflow-visible mt-6 lg:mt-0" ref={rightContentRef}>
             {activeTab === "Programs" && (
               <>
                 <div className="flex flex-col gap-3">
@@ -175,21 +186,21 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
                   ))}
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 mt-2 h-20 lg:h-[100px]">
-                  <a href="#" className="bg-white flex items-end p-3 lg:p-4 text-xs lg:text-sm font-medium rounded shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden"><span className="relative z-10 pointer-events-none">Alumni</span><PixelArrowCard /></a>
-                  <a href="#" className="bg-white flex items-end p-3 lg:p-4 text-xs lg:text-sm font-medium rounded shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden"><span className="relative z-10 pointer-events-none">Our Mentors</span><PixelArrowCard /></a>
-                  <a href="#" className="bg-white flex items-end p-3 lg:p-4 text-xs lg:text-sm font-medium rounded shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden"><span className="relative z-10 pointer-events-none">Financial Aid</span><PixelArrowCard /></a>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2 h-auto lg:h-[100px]">
+                  <a href="#" className="bg-white flex items-end p-3 lg:p-4 text-xs lg:text-sm font-medium rounded shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden min-h-[70px] lg:min-h-0"><span className="relative z-10 pointer-events-none">Alumni</span><PixelArrowCard /></a>
+                  <a href="#" className="bg-white flex items-end p-3 lg:p-4 text-xs lg:text-sm font-medium rounded shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden min-h-[70px] lg:min-h-0"><span className="relative z-10 pointer-events-none">Our Mentors</span><PixelArrowCard /></a>
+                  <a href="#" className="bg-white flex items-end p-3 lg:p-4 text-xs lg:text-sm font-medium rounded shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden col-span-2 md:col-span-1 min-h-[70px] lg:min-h-0"><span className="relative z-10 pointer-events-none">Financial Aid</span><PixelArrowCard /></a>
                 </div>
               </>
             )}
 
             {activeTab === "Student Experience" && (
-              <div className="grid grid-cols-2 gap-4 h-[200px]">
-                 <div className="bg-white p-6 rounded shadow-sm flex items-end justify-center text-3xl font-medium hover:shadow-md transition-shadow cursor-pointer group relative overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-auto lg:h-[200px]">
+                 <div className="bg-white p-6 rounded shadow-sm flex items-end justify-center text-2xl lg:text-3xl font-medium hover:shadow-md transition-shadow cursor-pointer group relative overflow-hidden min-h-[120px]">
                     <span className="relative z-10 pointer-events-none">Student Experience</span>
                     <PixelArrowCard />
                  </div>
-                 <div className="bg-white p-6 rounded shadow-sm flex items-end justify-center text-3xl font-medium hover:shadow-md transition-shadow cursor-pointer group relative overflow-hidden">
+                 <div className="bg-white p-6 rounded shadow-sm flex items-end justify-center text-2xl lg:text-3xl font-medium hover:shadow-md transition-shadow cursor-pointer group relative overflow-hidden min-h-[120px]">
                     <span className="relative z-10 pointer-events-none">Student Talks</span>
                     <PixelArrowCard />
                  </div>
@@ -197,41 +208,51 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
             )}
             
             {activeTab === "About TIF" && (
-              <div className="grid grid-cols-2 gap-4 h-[500px] w-[1600px]">
-              <div className="bg-white p-8 rounded shadow-sm flex-1 flex flex-col justify-center gap-4 group relative overflow-hidden cursor-pointer">
-                 <h2 className="text-3xl font-medium relative z-10 pointer-events-none">About The Knowledge Society</h2>
-                 <p className="text-gray-500 relative z-10 pointer-events-none">We exist to help ambitious young people reach their full potential.</p>
+              <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 h-auto lg:h-[500px] w-full lg:w-[100%] xl:w-[1600px]">
+              <div className="bg-white p-6 md:p-8 rounded shadow-sm flex-1 flex flex-col justify-center gap-4 group relative overflow-hidden cursor-pointer min-h-[150px]">
+                 <h2 className="text-2xl md:text-3xl font-medium relative z-10 pointer-events-none">About The Knowledge Society</h2>
+                 <p className="text-gray-500 relative z-10 pointer-events-none text-sm md:text-base">We exist to help ambitious young people reach their full potential.</p>
                  <PixelArrowCard />
               </div>
               </div>
             )}
             
             {activeTab === "Follow us" && (
-              <div className="grid grid-cols-2 gap-4 h-[180px]">
-                 <a href="#" className="bg-white p-2 flex items-end justify-center text-xl font-medium shadow-sm hover:shadow-md transition-all rounded group relative overflow-hidden"><span className="relative z-10 pointer-events-none">Instagram</span><PixelArrowCard/></a>
-                 <a href="#" className="bg-white p-2 flex items-end justify-center text-xl font-medium shadow-sm hover:shadow-md transition-all rounded group relative overflow-hidden"><span className="relative z-10 pointer-events-none">Twitter</span><PixelArrowCard/></a>
-                 <a href="#" className="bg-white p-2 flex items-end justify-center text-xl font-medium shadow-sm hover:shadow-md transition-all rounded group relative overflow-hidden"><span className="relative z-10 pointer-events-none">LinkedIn</span><PixelArrowCard/></a>
-                 <a href="#" className="bg-white p-2 flex items-end justify-center text-xl font-medium shadow-sm hover:shadow-md transition-all rounded group relative overflow-hidden"><span className="relative z-10 pointer-events-none">YouTube</span><PixelArrowCard/></a>
+              <div className="grid grid-cols-2 gap-4 h-auto lg:h-[180px]">
+                 <a href="#" className="bg-white p-4 lg:p-2 flex items-end justify-center text-lg lg:text-xl font-medium shadow-sm hover:shadow-md transition-all rounded group relative overflow-hidden min-h-[80px] lg:min-h-0"><span className="relative z-10 pointer-events-none">Instagram</span><PixelArrowCard/></a>
+                 <a href="#" className="bg-white p-4 lg:p-2 flex items-end justify-center text-lg lg:text-xl font-medium shadow-sm hover:shadow-md transition-all rounded group relative overflow-hidden min-h-[80px] lg:min-h-0"><span className="relative z-10 pointer-events-none">Twitter</span><PixelArrowCard/></a>
+                 <a href="#" className="bg-white p-4 lg:p-2 flex items-end justify-center text-lg lg:text-xl font-medium shadow-sm hover:shadow-md transition-all rounded group relative overflow-hidden min-h-[80px] lg:min-h-0"><span className="relative z-10 pointer-events-none">LinkedIn</span><PixelArrowCard/></a>
+                 <a href="#" className="bg-white p-4 lg:p-2 flex items-end justify-center text-lg lg:text-xl font-medium shadow-sm hover:shadow-md transition-all rounded group relative overflow-hidden min-h-[80px] lg:min-h-0"><span className="relative z-10 pointer-events-none">YouTube</span><PixelArrowCard/></a>
               </div>
             )}
           </div>
         </div>
 
-        <div className="mt-auto pt-6 flex flex-col lg:flex-row items-end lg:items-center justify-between text-sm text-gray-500">
-          <div className="w-full lg:w-auto mb-4 lg:mb-0">
+        <div className="mt-12 lg:mt-auto pt-6 flex flex-col lg:flex-row items-start lg:items-center justify-between text-sm text-gray-500 w-full shrink-0">
+          <div className="w-full lg:w-auto mb-10 lg:mb-0">
             <p className="font-medium text-black mb-4 uppercase tracking-wider text-sm">Stay Updated</p>
-            <div className="flex align-center border border-gray-300 p-1 bg-white min-w-[400px] rounded-[4px] shadow-sm">
-              <input type="email" placeholder="E-mail" className="flex-1 outline-none px-3 bg-transparent text-black text-sm" />
+            <div className="flex align-center border border-gray-300 p-1 bg-white w-full lg:min-w-[400px] rounded-[4px] shadow-sm">
+              <input type="email" placeholder="E-mail" className="flex-1 outline-none px-3 bg-transparent text-black text-sm w-full" />
               <div className="shrink-0 flex items-center justify-center">
                 <TksButton className="h-10 py-1 px-4 text-xs">Submit</TksButton>
               </div>
             </div>
           </div>
           
-          <div className=" text-sm w-full lg:w-auto flex mt-20 justify-between lg:gap-32">
-            <p>TIF©2026</p>
+          <div className="text-sm w-full lg:w-auto flex flex-col sm:flex-row mt-0 lg:mt-20 justify-between lg:gap-32 gap-2 text-gray-400">
+            <p className="text-black">TIF©2026</p>
             <p>All rights reserved ©2026</p>
-            <p>Developed by Izum.Digital</p>
+            <p>
+            Developed by{" "}
+            <a 
+              href="https://kutsev-studio.by" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-black hover:text-[#52a663] transition-colors"
+            >
+              kutsev-studio
+            </a>
+          </p>
           </div>
         </div>
 
