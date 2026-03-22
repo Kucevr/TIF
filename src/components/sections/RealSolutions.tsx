@@ -245,7 +245,7 @@ export const RealSolutions = () => {
                  <div 
                     key={card.id} 
                     className={cn(
-                      "bg-white h-[65vh] min-h-[500px] max-h-[700px] flex flex-col md:flex-row shadow-sm rounded-sm shrink-0 relative select-none overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]",
+                      "bg-white h-[88vh] md:h-[65vh] min-h-[500px] max-h-[1000px] md:max-h-[700px] flex flex-col md:flex-row shadow-sm rounded-sm shrink-0 relative select-none overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]",
                       // Active: Wider, fully visible
                       isActive ? "w-[90vw] md:w-[70vw] lg:w-[65vw] xl:w-[1000px] scale-100 opacity-100 blur-none pointer-events-auto" : "w-[75vw] md:w-[50vw] lg:w-[45vw] xl:w-[700px] pointer-events-none",
                       // Next/Upcoming: Slightly smaller, blurred, overlapping effect
@@ -274,7 +274,7 @@ export const RealSolutions = () => {
                       </p>
 
                       <div className="mt-4 md:mt-8">
-                        <div className="font-bold text-sm md:text-lg tracking-widest text-[#005288] uppercase mb-4">
+                        <div className="font-bold text-sm md:text-lg tracking-widest text-[#005288] uppercase mb-2 md:mb-4">
                           {card.logoText}
                         </div>
                         <div className="text-xs font-bold text-gray-400 tracking-wider">
@@ -286,7 +286,7 @@ export const RealSolutions = () => {
                    {/* Right Half */}
                    <div className="w-full md:w-1/2 p-4 flex flex-col items-center justify-between">
                       <div className="w-full h-[calc(100%-80px)] relative overflow-hidden rounded-[2px]">
-                        <img src={card.img} alt={card.name} className="w-full h-full object-cover" draggable={false} />
+                        <img src={card.img} alt={card.name} className="w-[300px] h-[300px] object-cover" draggable={false} />
                       </div>
                       <div className="w-full flex justify-between items-center mt-4 px-2">
                         <span className="text-xl font-medium tracking-tight pointer-events-auto select-auto">{card.name}</span>
