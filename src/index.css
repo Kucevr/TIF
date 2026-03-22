@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tks-green: #48a65f;
+  --color-tks-green-hover: #3d8c50;
+  
+  --font-tks: "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f2f2f2; /* Light grey based on reference */
+  color: #111;
+  -webkit-font-smoothing: antialiased;
+}
