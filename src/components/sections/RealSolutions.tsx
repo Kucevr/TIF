@@ -269,7 +269,7 @@ export const RealSolutions = () => {
                         ) : card.title}
                       </h4>
 
-                      <p className="text-gray-600 font-medium text-base leading-relaxed mb-auto max-w-sm">
+                      <p className="text-gray-600 font-medium text-sm md:text-base leading-[1.3] md:leading-relaxed mb-auto max-w-sm">
                         {card.quote}
                       </p>
 
