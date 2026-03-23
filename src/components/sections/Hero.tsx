@@ -21,11 +21,14 @@ export const Hero = () => {
     <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-black text-white flex flex-col justify-end">
       {/* Background Image / Video */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000" 
-          alt="Students in lecture hall" 
+        <video 
+          src="/TIFherovid - HD 1080p.mp4" 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
           className="w-full h-full object-cover opacity-80"
-        />
+        ></video>
         <div className="absolute inset-0 bg-black/20" />
       </div>
 

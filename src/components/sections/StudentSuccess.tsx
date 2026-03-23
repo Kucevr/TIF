@@ -65,10 +65,8 @@ export const StudentSuccess = () => {
         <div className="absolute inset-0 w-full h-full bg-[#000000]">
           <img 
             ref={imageRef}
-            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=2000"
-            alt="Student working"
-            className="w-full h-full object-cover opacity-100"
-          />
+            src="/studentsuccess.jpg" 
+            />
         </div>
 
         <div className="relative z-10 w-full h-full flex flex-col justify-between max-w-[1800px] mx-auto px-6 md:px-12 py-24">
