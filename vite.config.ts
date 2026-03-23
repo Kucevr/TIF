@@ -11,9 +11,12 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          gsap: ['gsap', '@gsap/react']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('gsap')) return 'gsap';
+            if (id.includes('react')) return 'vendor';
+            return 'vendor'; // generic fallback for other node_modules
+          }
         }
       }
     }
